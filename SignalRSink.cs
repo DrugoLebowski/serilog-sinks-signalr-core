@@ -18,10 +18,10 @@ namespace Serilog.Sinks.SignalR.Core
     /// Writes log event to a SignalR Hub.
     /// </summary>
     /// <typeparam name="THub">The type of the Hub to use.</typeparam>
-    public class SignalRSink<THub> : ILogEventSink
-        where THub : Hub<ISerilogHub>
+    public class SignalRSink<THub, T> : ILogEventSink
+        where THub : Hub<T> where T : class
     {
-        private readonly IHubContext<THub, ISerilogHub> _hubContext;
+        private readonly IHubContext<THub, T> _hubContext;
         private readonly IFormatProvider _formatProvider;
         private readonly string[] _groups;
         private readonly string[] _userIds;
@@ -36,7 +36,7 @@ namespace Serilog.Sinks.SignalR.Core
         /// <param name="userIds">The users to where the events are sent.</param>
         /// <param name="excludedConnectionIds">The client ids to exclude.</param>
         public SignalRSink(
-            IHubContext<THub, ISerilogHub> hubContext,
+            IHubContext<THub, T> hubContext,
             IFormatProvider formatProvider = null,
             string[] groups = null,
             string[] userIds = null,
@@ -58,7 +58,7 @@ namespace Serilog.Sinks.SignalR.Core
         {
             if (logEvent == null) { throw new ArgumentNullException(nameof(logEvent)); }
 
-            var targets = new List<ISerilogHub>();
+            var targets = new List<T>();
 
             if (_groups.Any())
             {
@@ -92,7 +92,8 @@ namespace Serilog.Sinks.SignalR.Core
 
             foreach (var target in targets)
             {
-                target.PushEventLog(logEvent.RenderMessage(_formatProvider));
+                ((ISerilogHub) target)
+                    .PushEventLog(logEvent.RenderMessage(_formatProvider));
             }
         }
     }

@@ -24,19 +24,19 @@ namespace Serilog.Sinks.SignalR.Core.Extensions
         /// <param name="userIds">The users to which the log events are sent.</param>
         /// <param name="excludedConnectionIds">The excluded ids from the dispatch.</param>
         /// <returns>The instance of LoggerConfiguration</returns>
-        public static LoggerConfiguration SignalR<THub>(
+        public static LoggerConfiguration SignalR<THub, T>(
             this LoggerSinkConfiguration loggerConfiguration,
-            IHubContext<THub, ISerilogHub> hub,
+            IHubContext<THub, T> hub,
             IFormatProvider formatProvider = null,
             string[] groups = null,
             string[] userIds = null,
             string[] excludedConnectionIds = null
-        ) where THub : Hub<ISerilogHub>
+        ) where THub : Hub<T> where T : class
         {
             if (loggerConfiguration == null) { throw new ArgumentNullException(nameof(loggerConfiguration)); }
             if (hub == null) { throw new ArgumentNullException(nameof(hub)); }
 
-            return loggerConfiguration.Sink(new SignalRSink<THub>(
+            return loggerConfiguration.Sink(new SignalRSink<THub, T>(
                 hub,
                 formatProvider,
                 groups,
