@@ -21,10 +21,8 @@ namespace Serilog.Sinks.SignalR.Core
     public class SignalRSink<THub> : ILogEventSink
         where THub : Hub<ISerilogHub>
     {
-        private readonly IFormatProvider _formatProvider;
-
         private readonly IHubContext<THub, ISerilogHub> _hubContext;
-
+        private readonly IFormatProvider _formatProvider;
         private readonly string[] _groups;
         private readonly string[] _userIds;
         private readonly string[] _excludedConnectionIds;
