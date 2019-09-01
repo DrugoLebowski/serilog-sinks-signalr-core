@@ -1,6 +1,6 @@
 # serilog-sinks-signalr-core
 
-A Serilog sink that writes event to SignalR Hub.
+A Serilog' sink that writes event to SignalR Hub.
 
 Inspired by serilog-sink-signalr, I decided to rewrite it because this latter is not fully compatible with Microsoft.AspNetCore.SignalR.Core.
 
