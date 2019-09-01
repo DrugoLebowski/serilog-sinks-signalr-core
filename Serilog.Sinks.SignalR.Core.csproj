@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageVersion>0.1.1</PackageVersion>
+    <PackageVersion>0.1.2</PackageVersion>
     <Authors>Valerio Belli</Authors>
     <PackageId>Serilog.Sinks.SignalR.Core</PackageId>
     <PackageTags>Serilog, SignalR, Core, SignalR.Core, Sinks</PackageTags>
-    <Description>A Serilog' sink for SignalR.Core.</Description>
+    <Description>Sink for SignalR.Core.</Description>
     <PackageIconUrl>https://serilog.net/images/serilog-sink-nuget.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/DrugoLebowski/serilog-sinks-signalr-core</PackageProjectUrl>
     <PackOnBuild>true</PackOnBuild>
