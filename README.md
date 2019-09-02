@@ -1,5 +1,7 @@
 # serilog-sinks-signalr-core
 
+[![Build status](https://ci.appveyor.com/api/projects/status/shtaq2n6q7u8hg6s?svg=true)](https://ci.appveyor.com/project/DrugoLebowski/serilog-sinks-signalr-core)
+
 A Serilog' sink that writes event to SignalR Hub.
 
 Inspired by serilog-sink-signalr, I decided to rewrite it because this latter is not fully compatible with Microsoft.AspNetCore.SignalR.Core.
